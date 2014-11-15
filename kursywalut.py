@@ -1,6 +1,21 @@
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
-# author Bart Grzybicki <bgrzybicki@gmail.com>
+# KursyWalut - gets current exchange rates and converts between them to PLN and vice versa
+# Copyright (C) 2014 Bart Grzybicki <bgrzybicki@gmail.com>
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
 
 __author__ = u'Bart Grzybicki <bgrzybicki@gmail.com>'
 __version__ = u'0.1'
@@ -73,7 +88,7 @@ def get_exchg_rate(curr_list):
 def main():
     display_header()
     values = get_currencies()
-    print(u'Kursy walut z godz. {} ze strony http://finanse.wp.pl/waluty.html:\n'.format(values[len(values) - 1]['date'].decode('utf-8')))
+    print(u'Kursy z godz. {} ze strony http://finanse.wp.pl/waluty.html:\n'.format(values[len(values) - 1]['date'].decode('utf-8')))
     for curr in get_exchg_rate(values):
         if curr[u'source'] == u'Forex':
             print(curr[u'source']+ u'|' + curr[u'currency'] + u'|' + str(curr[u'value']))
