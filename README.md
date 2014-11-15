@@ -27,42 +27,41 @@ Dalsza przyszłość?
 
 Przykładowe działanie:
 
- bart@wujeksamozuo:~$ kursywalut
- $$$ KursyWalut 0.1 $$$
+<pre><code>bart@wujeksamozuo:~$ kursywalut
+$$$ KursyWalut 0.1 $$$
 
- Kursy z godz. 22:49, 14.11.2014 ze strony http://finanse.wp.pl/waluty.html:
+Kursy z godz. 22:49, 14.11.2014 ze strony http://finanse.wp.pl/waluty.html:
 
- Forex|EUR|4.22
- Forex|CHF|3.52
- Forex|USD|3.37
- Forex|GBP|5.29
- NBP  |EUR|4.23
- NBP  |CHF|3.52
- NBP  |USD|3.39
- NBP  |GBP|5.32
+Forex|EUR|4.22
+Forex|CHF|3.52
+Forex|USD|3.37
+Forex|GBP|5.29
+NBP  |EUR|4.23
+NBP  |CHF|3.52
+NBP  |USD|3.39
+NBP  |GBP|5.32
 
- bart@wujeksamozuo:~$ kursywalut 125
- $$$ KursyWalut 0.1 $$$
+bart@wujeksamozuo:~$ kursywalut 125
+$$$ KursyWalut 0.1 $$$
 
- Kursy z godz. 22:49, 14.11.2014 ze strony http://finanse.wp.pl/waluty.html:
+Kursy z godz. 22:49, 14.11.2014 ze strony http://finanse.wp.pl/waluty.html:
 
- Forex|EUR|4.22
- Forex|CHF|3.52
- Forex|USD|3.37
- Forex|GBP|5.29
- NBP  |EUR|4.23
- NBP  |CHF|3.52
- NBP  |USD|3.39
- NBP  |GBP|5.32
+Forex|EUR|4.22
+Forex|CHF|3.52
+Forex|USD|3.37
+Forex|GBP|5.29
+NBP  |EUR|4.23
+NBP  |CHF|3.52
+NBP  |USD|3.39
+NBP  |GBP|5.32
 
- 125 zł po przeliczeniu:
+125 zł po przeliczeniu:
 
- Forex|EUR|29.62
- Forex|CHF|35.51
- Forex|USD|37.09
- Forex|GBP|23.63
- NBP  |EUR|29.55
- NBP  |CHF|35.51
- NBP  |USD|36.87
- NBP  |GBP|23.50
- 
+Forex|EUR|29.62
+Forex|CHF|35.51
+Forex|USD|37.09
+Forex|GBP|23.63
+NBP  |EUR|29.55
+NBP  |CHF|35.51
+NBP  |USD|36.87
+NBP  |GBP|23.50</code></pre>
