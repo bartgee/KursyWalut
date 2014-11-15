@@ -1,6 +1,7 @@
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 # author Bart Grzybicki <bgrzybicki@gmail.com>
+# version
 
 __author__ = 'Bart Grzybicki <bgrzybicki@gmail.com>'
 
