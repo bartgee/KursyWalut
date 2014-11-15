@@ -8,13 +8,19 @@ __version__ = u'0.1'
 from lxml import html
 import requests
 import re
+import sys
 
 def display_header():
     print(u'$$$ KursyWalut ' + __version__ + u' $$$\n')
 
 def get_currencies():
-    page = requests.get('http://finanse.wp.pl/waluty.html')
+    try:
+        page = requests.get('http://finanse.wp.pl/waluty.html')
+    except Exception:
+        print('Błąd pobrania danych ze strony http://finanse.wp.pl/waluty.html!')
+        sys.exit(1)
     tree = html.fromstring(page.text)
+    post_date = tree.xpath('//*[@id="wykres3"]/div[3]/text()')
     lt_list = []
     index = 1
     curr_list = []
@@ -25,17 +31,26 @@ def get_currencies():
         if value == []:
             break
         index += 1
-        #print(curr)
         curr_dict[u'currency'] = curr[0]
         curr_dict[u'value'] = value[0]
         curr_list.append(curr_dict)
+    curr_list.append({u'date':post_date[0].decode('utf-8')})
     return curr_list
 
 def get_exchg_rate(curr_list):
     exchg_list = []
     for curr in curr_list:
         exchg_dict = {}
-        is_forex = re.search(u'Forex', curr[u'currency'])
+        try:
+            is_date = re.search(u'date', curr[u'date'])
+            if is_date:
+                continue
+        except Exception:
+            pass
+        try:
+            is_forex = re.search(u'Forex', curr[u'currency'])
+        except Exception:
+            continue
         if is_forex:
             curr_idx_forex = curr[u'currency'].index(u'/')
             val_idx_forex = curr[u'value'].index(u' PLN')
@@ -58,15 +73,22 @@ def get_exchg_rate(curr_list):
 def main():
     display_header()
     values = get_currencies()
-    print(values)
-    for curr in values:
-        print(curr[u'currency'] + u': ' + curr[u'value'])
-    print(get_exchg_rate(values))
+    print(u'Kursy walut z godz. {} ze strony http://finanse.wp.pl/waluty.html:\n'.format(values[len(values) - 1]['date'].decode('utf-8')))
     for curr in get_exchg_rate(values):
         if curr[u'source'] == u'Forex':
             print(curr[u'source']+ u'|' + curr[u'currency'] + u'|' + str(curr[u'value']))
         else:
             print(curr[u'source']+ u'  |' + curr[u'currency'] + u'|' + str(curr[u'value']))
+
+    if len(sys.argv) == 2:
+        print(u'\n' + sys.argv[1].decode('utf-8') + u' zł po przeliczeniu:\n')
+        for curr in get_exchg_rate(values):
+            value = '{:,.2f}'.format(float(sys.argv[1]) / curr[u'value'])
+            value = value.replace(',', ' ')
+            if curr[u'source'] == u'Forex':
+                print(curr[u'source']+ u'|' + curr[u'currency'] + u'|' + value.decode('utf-8'))
+            else:
+                print(curr[u'source']+ u'  |' + curr[u'currency'] + u'|' + value.decode('utf-8'))
 
 if __name__ == '__main__':
     main()
