@@ -63,4 +63,25 @@ Forex|GBP|23.63
 NBP  |EUR|29.55
 NBP  |CHF|35.51
 NBP  |USD|36.87
-NBP  |GBP|23.50</code></pre>
+NBP  |GBP|23.50
+
+bart@wujeksamozuo:~$ kursywalut 10 gbp
+$$$ KursyWalut 0.1 $$$
+
+Pobieram dane...
+pobrałem dane!
+Kursy z godz. 22:49, 14.11.2014 ze strony http://finanse.wp.pl/waluty.html:
+
+Forex|EUR|4.22
+Forex|CHF|3.52
+Forex|USD|3.37
+Forex|GBP|5.29
+NBP  |EUR|4.23
+NBP  |CHF|3.52
+NBP  |USD|3.39
+NBP  |GBP|5.32
+
+10 GBP po przeliczeniu na PLN:
+
+Forex|GBP|52.9
+NBP  |GBP|53.2</code></pre>
