@@ -29,6 +29,7 @@ def display_header():
     print(u'$$$ KursyWalut ' + __version__ + u' $$$\n')
 
 def get_currencies():
+    print('Pobieram dane...')
     try:
         page = requests.get('http://finanse.wp.pl/waluty.html')
     except Exception:
@@ -50,6 +51,7 @@ def get_currencies():
         curr_dict[u'value'] = value[0]
         curr_list.append(curr_dict)
     curr_list.append({u'date':post_date[0].decode('utf-8')})
+    print('pobrałem dane!')
     return curr_list
 
 def get_exchg_rate(curr_list):
@@ -88,22 +90,34 @@ def get_exchg_rate(curr_list):
 def main():
     display_header()
     values = get_currencies()
+    exchg_rate = get_exchg_rate(values)
+
     print(u'Kursy z godz. {} ze strony http://finanse.wp.pl/waluty.html:\n'.format(values[len(values) - 1]['date'].decode('utf-8')))
-    for curr in get_exchg_rate(values):
+    for curr in exchg_rate:
         if curr[u'source'] == u'Forex':
             print(curr[u'source']+ u'|' + curr[u'currency'] + u'|' + str(curr[u'value']))
         else:
             print(curr[u'source']+ u'  |' + curr[u'currency'] + u'|' + str(curr[u'value']))
 
     if len(sys.argv) == 2:
-        print(u'\n' + sys.argv[1].decode('utf-8') + u' zł po przeliczeniu:\n')
-        for curr in get_exchg_rate(values):
+        print(u'\n' + sys.argv[1].decode('utf-8') + u' PLN po przeliczeniu:\n')
+        for curr in exchg_rate:
             value = '{:,.2f}'.format(float(sys.argv[1]) / curr[u'value'])
             value = value.replace(',', ' ')
             if curr[u'source'] == u'Forex':
                 print(curr[u'source']+ u'|' + curr[u'currency'] + u'|' + value.decode('utf-8'))
             else:
                 print(curr[u'source']+ u'  |' + curr[u'currency'] + u'|' + value.decode('utf-8'))
+
+    if len(sys.argv) == 3:
+        print(u'selected currency: ' + sys.argv[2].decode('utf-8'))
+        print(u'\n' + sys.argv[1].decode('utf-8') + u' {} po przeliczeniu:\n'.format(sys.argv[2].upper()))
+        for curr in exchg_rate:
+            if curr[u'currency'] == sys.argv[2].upper().decode('utf-8') and curr[u'source'] == u'Forex':
+                print(curr[u'currency'])
+                print(1 /curr[u'value'])
+                eur_forex = 1 /curr[u'value']
+        #eur_forex =
 
 if __name__ == '__main__':
     main()
