@@ -50,7 +50,7 @@ def get_currencies():
         curr_dict[u'value'] = value[0]
         curr_list.append(curr_dict)
     curr_list.append({u'date':post_date[0].decode('utf-8')})
-    print('pobrałem dane!')
+    print('Pobrałem dane!')
     return curr_list
 
 def get_exchg_rate(curr_list):

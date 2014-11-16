@@ -29,7 +29,10 @@ Under development... might be not stable!
 <pre><code>bart@wujeksamozuo:~$ kursywalut
 $$$ KursyWalut 0.1 $$$
 
+Pobieram dane...
+Pobrałem dane!
 Kursy z godz. 22:49, 14.11.2014 ze strony http://finanse.wp.pl/waluty.html:
+
 
 Forex|EUR|4.22
 Forex|CHF|3.52
@@ -43,7 +46,10 @@ NBP  |GBP|5.32
 bart@wujeksamozuo:~$ kursywalut 125
 $$$ KursyWalut 0.1 $$$
 
+Pobieram dane...
+Pobrałem dane!
 Kursy z godz. 22:49, 14.11.2014 ze strony http://finanse.wp.pl/waluty.html:
+
 
 Forex|EUR|4.22
 Forex|CHF|3.52
@@ -69,7 +75,7 @@ bart@wujeksamozuo:~$ kursywalut 10 gbp
 $$$ KursyWalut 0.1 $$$
 
 Pobieram dane...
-pobrałem dane!
+Pobrałem dane!
 Kursy z godz. 22:49, 14.11.2014 ze strony http://finanse.wp.pl/waluty.html:
 
 Forex|EUR|4.22
@@ -83,5 +89,5 @@ NBP  |GBP|5.32
 
 10 GBP po przeliczeniu na PLN:
 
-Forex|GBP|52.9
-NBP  |GBP|53.2</code></pre>
+Forex|GBP|52.90
+NBP  |GBP|53.20</code></pre>
