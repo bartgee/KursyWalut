@@ -33,7 +33,6 @@ Pobieram dane...
 Pobrałem dane!
 Kursy z godz. 22:49, 14.11.2014 ze strony http://finanse.wp.pl/waluty.html:
 
-
 Forex|EUR|4.22
 Forex|CHF|3.52
 Forex|USD|3.37
@@ -49,7 +48,6 @@ $$$ KursyWalut 0.1 $$$
 Pobieram dane...
 Pobrałem dane!
 Kursy z godz. 22:49, 14.11.2014 ze strony http://finanse.wp.pl/waluty.html:
-
 
 Forex|EUR|4.22
 Forex|CHF|3.52
