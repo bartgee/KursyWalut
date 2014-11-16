@@ -12,10 +12,10 @@ Under development... might be not stable!
 - pobiera godzinę i datę kursów i dodaje je do listy dictów
 - dodaje dane do listy dictów i wyświetla kursy w czytelnej formie
 - w przypadku uruchomienia programu z podaną wartością w PLN jako parametr, przelicza dodatkowo podaną kwotę na wyżej wymienione waluty
+- przelicza dowolną walutę na PLN (eg.: kursywalut 10 gbp)
 
 ##Funkcje, które zostaną dodane w najbliższej przyszłości:
 
-- przeliczanie dowolnej waluty na PLN
 - przeliczanie dowolnej waluty na inną dowolną
 - praca w trybie daemona i gromadzenie danych w bazie SQLite3
 
