@@ -101,7 +101,7 @@ def main():
     if len(sys.argv) == 2:
         print(u'\n' + sys.argv[1].decode('utf-8') + u' PLN po przeliczeniu:\n')
         for curr in exchg_rate:
-            value = '{:,.2f}'.format(float(sys.argv[1]) / curr[u'value'])
+            value = u'{:,.2f}'.format(float(sys.argv[1]) / curr[u'value'])
             value = value.replace(',', ' ')
             if curr[u'source'] == u'Forex':
                 print(curr[u'source']+ u'|' + curr[u'currency'] + u'|' + value.decode('utf-8'))
@@ -114,13 +114,13 @@ def main():
             if curr[u'currency'] == sys.argv[2].decode('utf-8').upper() and curr[u'source'] == u'Forex':
                 eur_forex = curr[u'value'] * float(sys.argv[1])
                 eur_forex = round(eur_forex, 2)
-                eur_forex = '{:,.2f}'.format(eur_forex)
-                print('Forex|{}'.format(sys.argv[2].upper()) + '|' + str(eur_forex))
+                eur_forex = u'{:,.2f}'.format(eur_forex)
+                print(u'Forex|{}'.format(sys.argv[2].upper()) + u'|' + str(eur_forex))
             elif curr[u'currency'] == sys.argv[2].decode('utf-8').upper() and curr[u'source'] == u'NBP':
                 eur_nbp = curr[u'value'] * float(sys.argv[1])
                 eur_nbp = round(eur_nbp, 2)
-                eur_nbp = '{:,.2f}'.format(eur_nbp)
-                print('NBP  |{}'.format(sys.argv[2].upper()) + '|' + str(eur_nbp))
+                eur_nbp = u'{:,.2f}'.format(eur_nbp)
+                print(u'NBP  |{}'.format(sys.argv[2].upper()) + u'|' + str(eur_nbp))
 
 if __name__ == '__main__':
     main()
