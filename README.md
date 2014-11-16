@@ -58,7 +58,7 @@ NBP  |CHF|3.52
 NBP  |USD|3.39
 NBP  |GBP|5.32
 
-125 zł po przeliczeniu:
+125 PLN po przeliczeniu:
 
 Forex|EUR|29.62
 Forex|CHF|35.51
