@@ -115,9 +115,14 @@ def main():
         for curr in exchg_rate:
             if curr[u'currency'] == sys.argv[2].upper().decode('utf-8') and curr[u'source'] == u'Forex':
                 print(curr[u'currency'])
-                print(1 /curr[u'value'])
-                eur_forex = 1 /curr[u'value']
-        #eur_forex =
+                eur_forex = 1 /curr[u'value'] * float(sys.argv[1])
+                eur_forex = round(eur_forex, 2)
+                print('Forex|{}'.format(sys.argv[2].upper()) + '|' + str(eur_forex))
+            if curr[u'currency'] == sys.argv[2].upper().decode('utf-8') and curr[u'source'] == u'NBP':
+                print(curr[u'currency'])
+                eur_nbp = 1 /curr[u'value'] * float(sys.argv[1])
+                eur_nbp = round(eur_nbp, 2)
+                print('NBP  |{}'.format(sys.argv[2].upper()) + '|' + str(eur_nbp))
 
 if __name__ == '__main__':
     main()
