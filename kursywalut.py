@@ -29,11 +29,11 @@ def display_header():
     print(u'$$$ KursyWalut ' + __version__ + u' $$$\n')
 
 def get_currencies():
-    print('Pobieram dane...')
+    print(u'Pobieram dane...')
     try:
         page = requests.get('http://finanse.wp.pl/waluty.html')
     except Exception:
-        print('Błąd pobrania danych ze strony http://finanse.wp.pl/waluty.html!')
+        print(u'Błąd pobrania danych ze strony http://finanse.wp.pl/waluty.html!')
         sys.exit(1)
     tree = html.fromstring(page.text)
     post_date = tree.xpath('//*[@id="wykres3"]/div[3]/text()')
@@ -50,7 +50,7 @@ def get_currencies():
         curr_dict[u'value'] = value[0]
         curr_list.append(curr_dict)
     curr_list.append({u'date':post_date[0].decode('utf-8')})
-    print('Pobrałem dane!')
+    print(u'Pobrałem dane!')
     return curr_list
 
 def get_exchg_rate(curr_list):
@@ -98,7 +98,8 @@ def main():
         else:
             print(curr[u'source']+ u'  |' + curr[u'currency'] + u'|' + str(curr[u'value']))
 
-    if len(sys.argv) == 2:
+    if len(sys.argv) == 2 or len(sys.argv) == 3 and sys.argv[2].upper() == 'PLN':#\
+            #or len(sys.argv) == 4 and sys.argv[2].upper() == 'PLN':
         print(u'\n' + sys.argv[1].decode('utf-8') + u' PLN po przeliczeniu:\n')
         for curr in exchg_rate:
             value = u'{:,.2f}'.format(float(sys.argv[1]) / curr[u'value'])
@@ -108,19 +109,54 @@ def main():
             else:
                 print(curr[u'source']+ u'  |' + curr[u'currency'] + u'|' + value.decode('utf-8'))
 
-    if len(sys.argv) == 3:
+    if len(sys.argv) == 3 and sys.argv[2].upper() != 'PLN' or len(sys.argv) == 4 and sys.argv[3].upper() == 'PLN':# or len(sys.argv) == 4 and sys.argv[2] != 'PLN':
         print(u'\n' + sys.argv[1].decode('utf-8') + u' {} po przeliczeniu na PLN:\n'.format(sys.argv[2].upper()))
         for curr in exchg_rate:
             if curr[u'currency'] == sys.argv[2].decode('utf-8').upper() and curr[u'source'] == u'Forex':
-                eur_forex = curr[u'value'] * float(sys.argv[1])
-                eur_forex = round(eur_forex, 2)
-                eur_forex = u'{:,.2f}'.format(eur_forex)
-                print(u'Forex|{}'.format(sys.argv[2].upper()) + u'|' + str(eur_forex))
+                curr_forex = curr[u'value'] * float(sys.argv[1])
+                curr_forex = round(curr_forex, 2)
+                curr_forex = u'{:,.2f}'.format(curr_forex)
+                print(u'Forex|PLN|' + str(curr_forex))
             elif curr[u'currency'] == sys.argv[2].decode('utf-8').upper() and curr[u'source'] == u'NBP':
-                eur_nbp = curr[u'value'] * float(sys.argv[1])
-                eur_nbp = round(eur_nbp, 2)
-                eur_nbp = u'{:,.2f}'.format(eur_nbp)
-                print(u'NBP  |{}'.format(sys.argv[2].upper()) + u'|' + str(eur_nbp))
+                curr_nbp = curr[u'value'] * float(sys.argv[1])
+                curr_nbp = round(curr_nbp, 2)
+                curr_nbp = u'{:,.2f}'.format(curr_nbp)
+                #print(u'NBP  |{}'.format(sys.argv[2].upper()) + u'|' + str(curr_nbp))
+                print(u'NBP  |PLN|' + str(curr_nbp))
+
+    if len(sys.argv) == 4 and sys.argv[3].upper() != 'PLN' and sys.argv[2].upper() != 'PLN':
+        print(u'\n' + sys.argv[1].decode('utf-8') + u' {} po przeliczeniu na {}:\n'.format(sys.argv[2].upper(), sys.argv[3].upper()))
+        for curr in exchg_rate:
+            if curr[u'currency'] == sys.argv[2].decode('utf-8').upper() and curr[u'source'] == u'Forex':
+                curr_from = curr[u'value'] * float(sys.argv[1])
+                for curr_second in exchg_rate:
+                    if curr_second[u'currency'] == sys.argv[3].decode('utf-8').upper() and curr_second[u'source'] == u'Forex':
+                        curr_to = curr_from / curr_second[u'value']
+                        curr_to = round(curr_to, 2)
+                        curr_to = u'{:,.2f}'.format(curr_to)
+                        print(u'Forex|{}'.format(sys.argv[3].upper()) + u'|' + str(curr_to))
+                    else:
+                        continue
+            elif curr[u'currency'] == sys.argv[2].decode('utf-8').upper() and curr[u'source'] == u'NBP':
+                curr_from = curr[u'value'] * float(sys.argv[1])
+                for curr_second in exchg_rate:
+                    if curr_second[u'currency'] == sys.argv[3].decode('utf-8').upper() and curr_second[u'source'] == u'NBP':
+                        curr_to = curr_from / curr_second[u'value']
+                        curr_to = round(curr_to, 2)
+                        curr_to = u'{:,.2f}'.format(curr_to)
+                        print(u'NBP  |{}'.format(sys.argv[3].upper()) + u'|' + str(curr_to))
+                    else:
+                        continue
+
+    if len(sys.argv) == 4 and sys.argv[3].upper() != 'PLN' and sys.argv[2].upper() == 'PLN':
+        print(u'\n' + sys.argv[1].decode('utf-8') + u' PLN po przeliczeniu args2:\n')
+        for curr in exchg_rate:
+            value = u'{:,.2f}'.format(float(sys.argv[1]) / curr[u'value'])
+            value = value.replace(',', ' ')
+            if curr[u'source'] == u'Forex' and curr[u'currency'] == sys.argv[3].upper():
+                print(curr[u'source']+ u'|' + curr[u'currency'] + u'|' + value.decode('utf-8'))
+            elif curr[u'source'] == u'NBP' and curr[u'currency'] == sys.argv[3].upper():
+                print(curr[u'source']+ u'  |' + curr[u'currency'] + u'|' + value.decode('utf-8'))
 
 if __name__ == '__main__':
     main()

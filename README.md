@@ -13,10 +13,10 @@ Under development... might be not stable!
 - dodaje dane do listy dictów i wyświetla kursy w czytelnej formie
 - w przypadku uruchomienia programu z podaną wartością w PLN jako parametr, przelicza dodatkowo podaną kwotę na wyżej wymienione waluty
 - przelicza dowolną walutę na PLN (eg.: kursywalut 10 gbp)
+- przelicza dowolną walutę na inną dowolną (eg. kursywalut 10 chf usd)
 
 ##Funkcje, które zostaną dodane w najbliższej przyszłości:
 
-- przeliczanie dowolnej waluty na inną dowolną
 - praca w trybie daemona i gromadzenie danych w bazie SQLite3
 
 ##Dalsza przyszłość?
@@ -88,4 +88,26 @@ NBP  |GBP|5.32
 10 GBP po przeliczeniu na PLN:
 
 Forex|GBP|52.90
-NBP  |GBP|53.20</code></pre>
+NBP  |GBP|53.20
+
+bart@wujeksamozuo:~$ kursywalut 10 usd chf
+$$$ KursyWalut 0.1 $$$
+
+Pobieram dane...
+Pobrałem dane!
+Kursy z godz. 22:47, 28.11.2014 ze strony http://finanse.wp.pl/waluty.html:
+
+Forex|EUR|4.18
+Forex|CHF|3.47
+Forex|USD|3.36
+Forex|GBP|5.25
+NBP  |EUR|4.18
+NBP  |CHF|3.48
+NBP  |USD|3.36
+NBP  |GBP|5.28
+
+10 USD po przeliczeniu na CHF:
+
+Forex|CHF|9.68
+NBP  |CHF|9.66
+</code></pre>
