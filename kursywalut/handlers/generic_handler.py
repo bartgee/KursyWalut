@@ -6,6 +6,7 @@ import six
 import requests
 import sys
 
+
 class GenericHandler(object):
 
     def __init__(self, url):
@@ -18,7 +19,7 @@ class GenericHandler(object):
         for key, value in self.site_mapping.items():
             if value == self.url:
                 site = self._to_unicode(key)
-        sys.stdout.write(u'Pobieram dane... ' + site + '\n') # instead of print() to print without a new line
+        sys.stdout.write(u'Pobieram dane... ' + site + '\n')  # instead of print() to print without a new line
         sys.stdout.flush()
         try:
             page = requests.get(self.url)

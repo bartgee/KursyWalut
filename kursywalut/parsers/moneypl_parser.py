@@ -7,6 +7,7 @@ from lxml import html
 
 import six
 
+
 class MoneyPlParser(object):
 
     def __init__(self, moneypl_handler, site_mapping):
@@ -15,9 +16,6 @@ class MoneyPlParser(object):
         for key, value in site_mapping.items():
             if value == self.moneypl_handler.url:
                 self.currency[key] = {}
-
-    # def __new__(cls, *args, **kwargs):
-
 
     def _get_text(self):
         if self.moneypl_handler.page_list is not None:
@@ -30,7 +28,7 @@ class MoneyPlParser(object):
         if type(page_raw) == list:
             print('page_raw=' + str(len(page_raw)))
             # FOREX
-            page = page_raw[0] # TODO: na razie tylko pierwszy element listy
+            page = page_raw[0]
             tree = html.fromstring(page)
 
             post_date_forex = tree.xpath('//span[@class="xqiouj-5 kFhDeu"]/text()')[0]

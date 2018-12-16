@@ -105,3 +105,11 @@ ENV/
 .idea
 .idea/KursyWalut.iml
 .idea/misc.xml
+
+# test output
+code_complexity.txt
+complexity.txt
+pep257_violations.txt
+pep8_violations.txt
+py27.html
+py36.html

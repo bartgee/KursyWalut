@@ -11,9 +11,9 @@ with open('README.rst') as readme_file:
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
-requirements = ['lxml>=4.2.5', 'requests>=2.21.0', 'six>=1.12.0', ]
+requirements = ['lxml>=4.2.5', 'requests>=2.21.0', 'six>=1.12.0']
 
-setup_requirements = ['pytest-runner', ]
+setup_requirements = ['pytest-runner', 'pytest-html']
 
 test_requirements = ['pytest', ]
 
@@ -47,7 +47,7 @@ setup(
     url='https://github.com/bartgee/kursywalut',
     version='0.2.0',
     zip_safe=False,
-    entry_points = {
+    entry_points={
         'console_scripts': [
             'kursywalut = kursywalut.__main__:main'
         ]

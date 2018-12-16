@@ -18,9 +18,11 @@ def _to_unicode(value):
     """
     return six.text_type(value)
 
+
 def print_unicode(str):
     out = (six.text_type(str))
     print(out)
+
 
 def get_moneypl():
     mpl = MoneyPlHandler()
@@ -28,11 +30,13 @@ def get_moneypl():
     # data = _to_unicode(data)
     return data
 
+
 def format_data(data):
     for key, value in data.items():
         print(key)
         for name, detail in value.items():
             print(name + ' ' + str(detail))
+
 
 def display_header():
     print(u'##################')
@@ -41,6 +45,7 @@ def display_header():
     data = get_moneypl()
     pprint(data)
     format_data(data)
+
 
 def run():
     display_header()

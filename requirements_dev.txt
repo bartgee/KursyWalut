@@ -10,4 +10,6 @@ twine==1.12.1
 
 pytest==3.8.2
 pytest-runner==4.2
+pytest-html==1.19.0
+pytest-cov==2.6.0
 mock==2.0.0

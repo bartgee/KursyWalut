@@ -5,6 +5,7 @@
 from .generic_handler import GenericHandler
 from kursywalut.parsers.moneypl_parser import MoneyPlParser
 
+
 class MoneyPlHandler(GenericHandler):
     """
     MoneyPlHandler class.
