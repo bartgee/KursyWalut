@@ -7,7 +7,7 @@ from kursywalut.parsers.moneypl_parser import MoneyPlParser
 
 class MoneyPlHandler(GenericHandler):
     """
-    bla
+    MoneyPlHandler class.
     """
     def __init__(self):
         super(MoneyPlHandler, self).__init__(None)
