@@ -11,6 +11,9 @@ class MoneyPlHandler(GenericHandler):
     MoneyPlHandler class.
     """
     def __init__(self):
+        """
+        bla
+        """
         super(MoneyPlHandler, self).__init__(None)
         self.site_mapping = {
             'FOREX': 'https://www.money.pl/pieniadze/forex/',
