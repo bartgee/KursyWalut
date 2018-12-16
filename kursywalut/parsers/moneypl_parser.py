@@ -5,6 +5,8 @@
 # from kursywalut.handlers import MoneyPlHandler
 from lxml import html
 
+import six
+
 class MoneyPlParser(object):
 
     def __init__(self, moneypl_handler, site_mapping):
@@ -13,7 +15,8 @@ class MoneyPlParser(object):
         for key, value in site_mapping.items():
             if value == self.moneypl_handler.url:
                 self.currency[key] = {}
-        print(self.currency)
+
+    # def __new__(cls, *args, **kwargs):
 
 
     def _get_text(self):
@@ -25,10 +28,12 @@ class MoneyPlParser(object):
     def parse(self):
         page_raw = self._get_text()
         if type(page_raw) == list:
+            print('page_raw=' + str(len(page_raw)))
+            # FOREX
             page = page_raw[0] # TODO: na razie tylko pierwszy element listy
-
             tree = html.fromstring(page)
-            post_date = tree.xpath('//span[@class="xqiouj-5 kFhDeu"]/text()')[0]
+
+            post_date_forex = tree.xpath('//span[@class="xqiouj-5 kFhDeu"]/text()')[0]
 
             eur_pln_buy = tree.xpath('//*[@id="app"]/div/div[7]/div/div[2]/div/main/div/section[1]/div[2]/div/div/div/div[1]/div[2]/div[4]/div/div[2]/div')[0].text_content()
             eur_pln_sell = tree.xpath('//*[@id="app"]/div/div[7]/div/div[2]/div/main/div/section[1]/div[2]/div/div/div/div[1]/div[2]/div[4]/div/div[3]/div')[0].text_content()
@@ -42,13 +47,37 @@ class MoneyPlParser(object):
             usd_pln_buy = tree.xpath('//*[@id="app"]/div/div[7]/div/div[2]/div/main/div/section[1]/div[2]/div/div/div/div[1]/div[2]/div[6]/div/div[2]/div')[0].text_content()
             usd_pln_sell = tree.xpath('//*[@id="app"]/div/div[7]/div/div[2]/div/main/div/section[1]/div[2]/div/div/div/div[1]/div[2]/div[6]/div/div[3]/div')[0].text_content()
 
+            # NBP - average
+            page = page_raw[1]
+            tree = html.fromstring(page)
+            post_date_nbp = tree.xpath('//span[@class="sc-1fexh53-0 gVFZcf"]/text()')[0]
+
+            eur_nbp_avg = tree.xpath('//*[@id="app"]/div/div[7]/div/div[2]/div/main/div/div[5]/div/div/div[1]/div[2]/div[8]/div/div[3]/div')[0].text_content()
+            chf_nbp_avg = tree.xpath('//*[@id="app"]/div/div[7]/div/div[2]/div/main/div/div[5]/div/div/div[1]/div[2]/div[10]/div/div[3]/div')[0].text_content()
+            gbp_nbp_avg = tree.xpath('//*[@id="app"]/div/div[7]/div/div[2]/div/main/div/div[5]/div/div/div[1]/div[2]/div[11]/div/div[3]/div')[0].text_content()
+            usd_nbp_avg = tree.xpath('//*[@id="app"]/div/div[7]/div/div[2]/div/main/div/div[5]/div/div/div[1]/div[2]/div[2]/div/div[3]/div')[0].text_content()
+
         else:
             page = page_raw
 
-        self.currency['FOREX']['DATA'] = post_date
+        self.currency['NBP'] = {}
+        self.currency['FOREX']['DATA'] = self._to_unicode(post_date_forex)
         self.currency['FOREX']['EUR'] = [eur_pln_buy, eur_pln_sell]
         self.currency['FOREX']['CHF'] = [chf_pln_buy, chf_pln_sell]
         self.currency['FOREX']['GBP'] = [gbp_pln_buy, gbp_pln_sell]
         self.currency['FOREX']['USD'] = [usd_pln_buy, usd_pln_sell]
+        self.currency['NBP']['DATA'] = post_date_nbp
+        self.currency['NBP']['EUR'] = eur_nbp_avg
+        self.currency['NBP']['CHF'] = chf_nbp_avg
+        self.currency['NBP']['GBP'] = gbp_nbp_avg
+        self.currency['NBP']['USD'] = usd_nbp_avg
 
         return self.currency
+
+    def _to_unicode(self, value):
+        """
+        Converts value to unicode.
+        :param value: (str)
+        :return: (unicode)
+        """
+        return six.text_type(value)
