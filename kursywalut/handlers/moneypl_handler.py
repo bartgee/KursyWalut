@@ -24,6 +24,8 @@ class MoneyPlHandler(GenericHandler):
         self.url = self.url_forex
         self.get_webpage()
         self.page_list.append(self.page)
+        self.parser = MoneyPlParser(self, self.site_mapping)
+        self.data_parsed = self.parser.parse()
 
     def _get_nbp(self):
         self.url = self.url_nbp
@@ -34,6 +36,5 @@ class MoneyPlHandler(GenericHandler):
         self.page_list = []
         self._get_forex()
         self._get_nbp()
-        self.parser = MoneyPlParser(self)
-        self.data_parsed = self.parser.parse()
+
         return self.data_parsed
