@@ -13,6 +13,7 @@ import six
 
 class Config(object):
     """Class for main program sys args."""
+
     opts = None
 
 
@@ -68,6 +69,7 @@ def pretty_print_data(data):
                 print_unicode(name + '\t' + detail_str)
             detail_str = ''
         print_unicode('')
+
 
 def display_header():
     """Display header."""
