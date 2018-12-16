@@ -2,12 +2,16 @@
 
 """Main module."""
 
-from .interface import interface
-
 import six
+
+from .interface import interface
 
 
 def main():
+    """MAIN.
+
+    :return:
+    """
     print(six.text_type('in main'))
     interface.run()
 

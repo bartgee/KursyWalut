@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 """Tests for MoneyPlHandler class."""
@@ -33,4 +32,4 @@ class TestMoneyPlHandler(object):
             request = handler.get_moneypl()
 
             assert request == expected
-            MockHandler.assert_called_once()
+            MockHandler.assert_called()

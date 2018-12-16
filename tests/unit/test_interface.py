@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 """Tests for `interface` package."""
@@ -9,7 +8,6 @@ import mock
 from requests.exceptions import RequestException
 
 from kursywalut.interface import interface
-
 
 DATA = {'FOREX': {'CHF': ['3,8007', '3,8107'],
                   'DATA': 'Dziś, 16.12.2018 11:32',
@@ -29,7 +27,6 @@ def response():
 
     See more at: http://doc.pytest.org/en/latest/fixture.html
     """
-
 
     interface.get_moneypl = mock.MagicMock(return_value=DATA)
 

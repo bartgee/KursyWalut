@@ -1,19 +1,17 @@
 # -*- coding: utf-8 -*-
 
-"""MoneyPlHandler Class"""
+"""MoneyPlHandler Class."""
+
+from kursywalut.parsers.moneypl_parser import MoneyPlParser
 
 from .generic_handler import GenericHandler
-from kursywalut.parsers.moneypl_parser import MoneyPlParser
 
 
 class MoneyPlHandler(GenericHandler):
-    """
-    MoneyPlHandler class.
-    """
+    """MoneyPlHandler class."""
+
     def __init__(self):
-        """
-        bla
-        """
+        """Initialization method."""
         super(MoneyPlHandler, self).__init__(None)
         self.site_mapping = {
             'FOREX': 'https://www.money.pl/pieniadze/forex/',
@@ -24,17 +22,29 @@ class MoneyPlHandler(GenericHandler):
         self.page_list = []
 
     def _get_forex(self):
+        """_get_forex method.
+
+        Send request for FOREX data and add parsed data to the list.
+        """
         self.url = self.url_forex
         self.get_webpage()
         self.page_list.append(self.page)
         self.parser = MoneyPlParser(self, self.site_mapping)
 
     def _get_nbp(self):
+        """_get_nbp method.
+
+        Send request for NBP data and add parsed data to the list.
+        """
         self.url = self.url_nbp
         self.get_webpage()
         self.page_list.append(self.page)
 
     def get_moneypl(self):
+        """get_moneypl method.
+
+        Send requests for FOREX and NBP data and parse both responses.
+        """
         self.page_list = []
         self._get_forex()
         self._get_nbp()
