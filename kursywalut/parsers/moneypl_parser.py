@@ -35,7 +35,6 @@ class MoneyPlParser(object):
         """Parse xpath method."""
         page_raw = self._get_text()
         if type(page_raw) == list:
-            print('page_raw=' + str(len(page_raw)))
             # FOREX
             page = page_raw[0]
             tree = html.fromstring(page)

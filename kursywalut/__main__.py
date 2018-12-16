@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 """KursyWalut."""
 
-import six
+import sys
+
 
 from .interface import interface
 
 
 def main():
     """Main function."""
-    print(six.text_type('in main'))
-    interface.run()
+    interface.run(sys.argv)
 
 
 if __name__ == '__main__':

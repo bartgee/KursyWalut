@@ -5,3 +5,5 @@ from .version import __version__
 
 __author__ = 'Bart Grzybicki'
 __email__ = 'bgrzybicki@gmail.com'
+
+__all__ = ('__version__')

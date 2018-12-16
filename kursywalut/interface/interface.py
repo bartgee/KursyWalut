@@ -11,6 +11,11 @@ from kursywalut.handlers import MoneyPlHandler
 import six
 
 
+class Config(object):
+    """Class for main program sys args."""
+    opts = None
+
+
 def _to_unicode(value):
     """Converts value to unicode.
 
@@ -35,28 +40,47 @@ def get_moneypl():
     """
     mpl = MoneyPlHandler()
     data = mpl.get_moneypl()
-    # data = _to_unicode(data)
     return data
 
 
-def format_data(data):
+def pretty_print_data(data):
     """Format received data."""
+    detail_str = ''
     for key, value in data.items():
-        print(key)
-        for name, detail in value.items():
-            print(name + ' ' + str(detail))
+        if key == 'FOREX':
+            print_unicode(key + '\tkupno\tsprzedaż\n')
+        elif key == 'NBP':
+            print_unicode(key + '\tkurs średni\n')
 
+        for name, detail in value.items():
+            if type(detail) == list:
+                for item in detail:
+                    detail_str = detail_str + '\t' + item
+            else:
+                detail_str = detail
+            if name == 'DATA':
+                tab = '\t'
+            else:
+                tab = ''
+            if key == 'FOREX':
+                print_unicode(name + '{}'.format(tab) + detail_str)
+            elif key == 'NBP':
+                print_unicode(name + '\t' + detail_str)
+            detail_str = ''
+        print_unicode('')
 
 def display_header():
     """Display header."""
-    print(u'##################')
-    print_unicode(u'$ KursyWalut ' + version.__version__ + u' $')
-    print_unicode(u'##################')
-    data = get_moneypl()
-    pprint(data)
-    format_data(data)
+    print_unicode('##################')
+    print_unicode('$ KursyWalut ' + version.__version__ + ' $')
+    print_unicode('##################\n')
 
 
-def run():
+def run(*args):
     """Run the program."""
+    Config.opts = args
     display_header()
+    data = get_moneypl()
+    # pprint(data)
+    print_unicode('')
+    pretty_print_data(data)
