@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Package for parsing results.
-"""
+"""Various parsers package."""
 
 
 __author__ = 'Bart Grzybicki'

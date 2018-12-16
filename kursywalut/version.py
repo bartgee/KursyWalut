@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 """Version module."""
 
 import six

@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
+"""Interface module.
 
-"""Interface module."""
+Simple CLI interface to run the program.
+"""
 
 from pprint import pprint
 

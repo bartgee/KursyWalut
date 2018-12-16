@@ -1,6 +1,11 @@
 # -*- coding: utf-8 -*-
+"""Generic handler module.
 
-"""GenericHandler Class."""
+It consists of GenericHandler() class, which is ihnerited by MoneyPlHandler()
+class from kursywalut.handlers.moneypl_handler module. In the future, it could
+be used by another handlers used to request currency data from various
+websites.
+"""
 
 import sys
 

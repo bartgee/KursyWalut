@@ -1,6 +1,11 @@
 # -*- coding: utf-8 -*-
+"""money.pl handler module.
 
-"""MoneyPlHandler Class."""
+Prepared requests are being passed to the get_webpage() method
+inherited from GenericHandler class. In the next receved response is passed
+over to the MoneyPlParser().parse() method. In the last step parsed data
+is returned by the get_moneypl() method.
+"""
 
 from kursywalut.parsers.moneypl_parser import MoneyPlParser
 

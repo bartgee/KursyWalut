@@ -1,7 +1,13 @@
 # -*- coding: utf-8 -*-
+"""money.pl parser module.
 
-"""Main module."""
+Currency data is retireved from the following websites:
 
+self.site_mapping = {
+    'FOREX': 'https://www.money.pl/pieniadze/forex/',
+    'NBP': 'https://www.money.pl/pieniadze/nbp/srednie/',
+}
+"""
 
 import six
 from lxml import html

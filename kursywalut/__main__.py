@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-
-"""Main module."""
+"""KursyWalut."""
 
 import six
 
@@ -8,10 +7,7 @@ from .interface import interface
 
 
 def main():
-    """MAIN.
-
-    :return:
-    """
+    """Main function."""
     print(six.text_type('in main'))
     interface.run()
 
