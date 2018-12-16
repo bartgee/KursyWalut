@@ -42,4 +42,7 @@ def display_header():
     pprint(data)
     format_data(data)
 
-display_header()
+def run():
+    display_header()
+
+# run() # TODO: to remove, it's just for testing

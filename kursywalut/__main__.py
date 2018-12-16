@@ -9,7 +9,7 @@ import six
 
 def main():
     print(six.text_type('in main'))
-    interface.display_header()
+    interface.run()
 
 
 if __name__ == '__main__':

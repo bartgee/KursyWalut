@@ -19,13 +19,11 @@ class MoneyPlHandler(GenericHandler):
         self.url_nbp = self.site_mapping['NBP']
         self.page_list = []
 
-
     def _get_forex(self):
         self.url = self.url_forex
         self.get_webpage()
         self.page_list.append(self.page)
         self.parser = MoneyPlParser(self, self.site_mapping)
-
 
     def _get_nbp(self):
         self.url = self.url_nbp
