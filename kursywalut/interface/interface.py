@@ -4,8 +4,6 @@
 Simple CLI interface to run the program.
 """
 
-from pprint import pprint
-
 from kursywalut import version
 from kursywalut.handlers import MoneyPlHandler
 import six
