@@ -47,9 +47,9 @@ def pretty_print_data(data):
     detail_str = ''
     for key, value in data.items():
         if key == 'FOREX':
-            print_unicode(key + '\tkupno\tsprzedaż\n')
+            print_unicode(key + u'\tkupno\tsprzedaż\n')
         elif key == 'NBP':
-            print_unicode(key + '\tkurs średni\n')
+            print_unicode(key + u'\tkurs średni\n')
 
         for name, detail in value.items():
             if type(detail) == list:
@@ -62,18 +62,18 @@ def pretty_print_data(data):
             else:
                 tab = ''
             if key == 'FOREX':
-                print_unicode(name + '{}'.format(tab) + detail_str)
+                print_unicode(name + u'{}'.format(tab) + detail_str)
             elif key == 'NBP':
-                print_unicode(name + '\t' + detail_str)
+                print_unicode(name + u'\t' + detail_str)
             detail_str = ''
         print_unicode('')
 
 
 def display_header():
     """Display header."""
-    print_unicode('##################')
-    print_unicode('$ KursyWalut ' + version.__version__ + ' $')
-    print_unicode('##################\n')
+    print_unicode(u'##################')
+    print_unicode(u'$ KursyWalut ' + version.__version__ + u' $')
+    print_unicode(u'##################\n')
 
 
 def run(*args):
