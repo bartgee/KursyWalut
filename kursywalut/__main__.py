@@ -4,7 +4,7 @@
 import sys
 
 
-from .interface import interface
+from kursywalut.interface import interface
 
 
 def main():
