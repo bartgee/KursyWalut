@@ -9,8 +9,10 @@ self.site_mapping = {
 }
 """
 
-import six
+from collections import OrderedDict
+
 from lxml import html
+import six
 
 
 class MoneyPlParser(object):
@@ -19,7 +21,7 @@ class MoneyPlParser(object):
     def __init__(self, moneypl_handler, site_mapping):
         """Initialization metod."""
         self.moneypl_handler = moneypl_handler
-        self.currency = {}
+        self.currency = OrderedDict()
         for key, value in site_mapping.items():
             if value == self.moneypl_handler.url:
                 self.currency[key] = {}
@@ -104,7 +106,8 @@ class MoneyPlParser(object):
         else:
             page = page_raw
 
-        self.currency['NBP'] = {}
+        self.currency['FOREX'] = OrderedDict()
+        self.currency['NBP'] = OrderedDict()
         self.currency['FOREX']['DATA'] = self._to_unicode(post_date_forex)
         self.currency['FOREX']['EUR'] = [eur_pln_buy, eur_pln_sell]
         self.currency['FOREX']['CHF'] = [chf_pln_buy, chf_pln_sell]
