@@ -57,7 +57,6 @@ def pretty_print_data(data):
                     detail_str = detail_str + '\t' + item
             else:
                 detail_str = detail
-            tab = '\t'
             if name == 'DATA':
                 tab = '\t'
             else:
