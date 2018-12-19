@@ -11,11 +11,11 @@ with open('README.rst') as readme_file:
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
-requirements = ['lxml>=4.2.5', 'requests>=2.21.0', 'six>=1.12.0']
+requirements = ['lxml>=4.2.5', 'requests>=2.21.0', 'six>=1.12.0',]
 
-setup_requirements = ['pytest-runner', 'pytest-html']
+setup_requirements = ['setuptools_scm',]
 
-test_requirements = ['pytest', ]
+test_requirements = ['pytest', 'pytest-runner', 'pytest-html',]
 
 setup(
     author="Bart Grzybicki",
