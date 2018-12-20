@@ -42,15 +42,6 @@ W swoim programie::
 
     In [1]: import kursywalut
 
-    In [2]:
-    Do you really want to exit ([y]/n)?
-    (venv) bart@gdn-n-bart:~/Dokumenty/python/github/KursyWalut$ ipython
-    Python 3.6.7 (default, Oct 22 2018, 11:32:17)
-    Type 'copyright', 'credits' or 'license' for more information
-    IPython 7.2.0 -- An enhanced Interactive Python. Type '?' for help.
-
-    In [1]: import kursywalut
-
     In [2]: moneypl = kursywalut.handlers.MoneyPlHandler()
 
     In [3]: data = moneypl.get_moneypl()
