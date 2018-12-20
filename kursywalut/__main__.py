@@ -3,8 +3,7 @@
 
 import sys
 
-
-from kursywalut.interface import interface
+from .interface import interface
 
 
 def main():
