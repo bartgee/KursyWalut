@@ -7,8 +7,7 @@ Simple CLI interface to run the program.
 
 import logging
 
-import six
-
+from ..funcs.string_operations import print_unicode
 from .. import version
 from ..handlers import MoneyPlHandler
 
@@ -25,29 +24,6 @@ class Config(object):
     """
 
     opts = None
-
-
-def _to_unicode(value):
-    """Convert value to unicode.
-
-    Args:
-        value (str): Value to be converted to unicode.
-
-    Returns:
-        string (Python 3) or unicode (Python 2).
-
-    """
-    return six.text_type(value)
-
-
-def print_unicode(str):
-    """Print unicode function.
-
-    Prints string (Python 3) or string converted to unicode (Python 2).
-
-    """
-    out = (six.text_type(str))
-    print(out)
 
 
 def get_moneypl():

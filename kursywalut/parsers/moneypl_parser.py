@@ -13,7 +13,8 @@ self.site_mapping = {
 from collections import OrderedDict
 
 from lxml import html
-import six
+
+from ..funcs.string_operations import _to_unicode
 
 
 class MoneyPlParser(object):
@@ -128,7 +129,7 @@ class MoneyPlParser(object):
 
         self.currency['FOREX'] = OrderedDict()
         self.currency['NBP'] = OrderedDict()
-        self.currency['FOREX']['DATA'] = self._to_unicode(post_date_forex)
+        self.currency['FOREX']['DATA'] = _to_unicode(post_date_forex)
         self.currency['FOREX']['EUR'] = [eur_pln_buy, eur_pln_sell]
         self.currency['FOREX']['CHF'] = [chf_pln_buy, chf_pln_sell]
         self.currency['FOREX']['GBP'] = [gbp_pln_buy, gbp_pln_sell]
@@ -140,15 +141,3 @@ class MoneyPlParser(object):
         self.currency['NBP']['USD'] = usd_nbp_avg
 
         return self.currency
-
-    def _to_unicode(self, value):
-        """Convert value to unicode.
-
-        Args:
-            value (str): Value to be converted to unicode.
-
-        Returns:
-            string (Python 3) or unicode (Python 2).
-
-        """
-        return six.text_type(value)
