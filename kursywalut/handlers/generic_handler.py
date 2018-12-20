@@ -10,8 +10,9 @@ websites.
 
 import logging
 
-import six
 import requests
+
+from ..funcs.string_operations import _to_unicode
 
 
 logger = logging.getLogger(__name__)
@@ -52,17 +53,5 @@ class GenericHandler(object):
             logger.debug('Done.')
             self.page = page.content
         except requests.exceptions.RequestException as error:
-            msg = self._to_unicode('Błąd pobrania danych ze strony {}!'.format(self.url))
+            msg = _to_unicode('Błąd pobrania danych ze strony {}!'.format(self.url))
             logger.error(msg + ': ' + str(error))
-
-    def _to_unicode(self, value):
-        """Convert value to unicode.
-
-        Args:
-            value (str): Value to be converted to unicode.
-
-        Returns:
-            string (Python 3) or unicode (Python 2).
-
-        """
-        return six.text_type(value)
