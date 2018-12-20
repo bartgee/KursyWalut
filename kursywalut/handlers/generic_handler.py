@@ -45,10 +45,6 @@ class GenericHandler(object):
         Send the request from self.site_mapping list.
 
         """
-        # for key, value in self.site_mapping.items():
-        #     if value == self.url:
-        #         site = self._to_unicode(key)
-
         logger.debug('Data retrieving...')
 
         try:

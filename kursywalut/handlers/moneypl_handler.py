@@ -86,5 +86,4 @@ class MoneyPlHandler(GenericHandler):
         self.parse_time = elapsed_time(start, now())
         logger.debug('self.data_parsed={}'.format(self.data_parsed))
 
-        # return self._to_unicode(self.data_parsed)
         return self.data_parsed

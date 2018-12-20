@@ -58,11 +58,8 @@ def get_moneypl():
 
     """
     print_unicode('Getting data from website.')
-    # start = now()
     mpl = MoneyPlHandler()
     data = mpl.get_moneypl()
-    # end = elapsed_time(start, now())
-    # logger.debug(end)
     print_unicode('data download time: {}'.format(mpl.download_time))
     print_unicode('parse time: {}'.format(mpl.parse_time))
     return data
@@ -112,6 +109,5 @@ def run(*args):
     Config.opts = args
     display_header()
     data = get_moneypl()
-    # pprint(data)
     print_unicode('')
     pretty_print_data(data)
