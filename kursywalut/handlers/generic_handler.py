@@ -8,10 +8,13 @@ websites.
 
 """
 
-import sys
+import logging
 
 import six
 import requests
+
+
+logger = logging.getLogger(__name__)
 
 
 class GenericHandler(object):
@@ -33,6 +36,8 @@ class GenericHandler(object):
         self.page_list = None
         self.page = None
         self.url = url
+        self.download_time = None
+        self.parse_time = None
 
     def get_webpage(self):
         """get_webpage method.
@@ -40,21 +45,15 @@ class GenericHandler(object):
         Send the request from self.site_mapping list.
 
         """
-        for key, value in self.site_mapping.items():
-            if value == self.url:
-                site = self._to_unicode(key)
-        sys.stdout.write(
-            u'Pobieram dane... ' + site + '\n')  # instead of print() to print without a new line
-        sys.stdout.flush()
+        logger.debug('Data retrieving...')
+
         try:
             page = requests.get(self.url)
-            sys.stdout.write(u'OK\n')
-            sys.stdout.flush()
+            logger.debug('Done.')
             self.page = page.content
-        except requests.exceptions.RequestException:
-            print(
-                u'Błąd pobrania danych ze strony http://finanse.wp.pl/waluty.html!')
-            sys.exit(1)
+        except requests.exceptions.RequestException as error:
+            msg = self._to_unicode('Błąd pobrania danych ze strony {}!'.format(self.url))
+            logger.error(msg + ': ' + str(error))
 
     def _to_unicode(self, value):
         """Convert value to unicode.

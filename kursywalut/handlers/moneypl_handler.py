@@ -8,9 +8,14 @@ is returned by the get_moneypl() method.
 
 """
 
-from kursywalut.parsers.moneypl_parser import MoneyPlParser
+import logging
 
+from ..funcs.time_operations import now, elapsed_time
+from ..parsers.moneypl_parser import MoneyPlParser
 from .generic_handler import GenericHandler
+
+
+logger = logging.getLogger(__name__)
 
 
 class MoneyPlHandler(GenericHandler):
@@ -44,6 +49,7 @@ class MoneyPlHandler(GenericHandler):
         Send request for FOREX data and add parsed data to the list.
 
         """
+        logger.debug(self._get_forex.__name__)
         self.url = self.url_forex
         self.get_webpage()
         self.page_list.append(self.page)
@@ -55,6 +61,7 @@ class MoneyPlHandler(GenericHandler):
         Send request for NBP data and add parsed data to the list.
 
         """
+        logger.debug(self._get_nbp.__name__)
         self.url = self.url_nbp
         self.get_webpage()
         self.page_list.append(self.page)
@@ -68,10 +75,15 @@ class MoneyPlHandler(GenericHandler):
             Parsed data as OrderedDict.
 
         """
+        logger.debug(self.get_moneypl.__name__)
         self.page_list = []
+        start = now()
         self._get_forex()
         self._get_nbp()
+        self.download_time = elapsed_time(start, now())
+        start = now()
         self.data_parsed = self.parser.parse()
+        self.parse_time = elapsed_time(start, now())
+        logger.debug('self.data_parsed={}'.format(self.data_parsed))
 
-        # return self._to_unicode(self.data_parsed)
         return self.data_parsed

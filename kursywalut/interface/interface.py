@@ -5,9 +5,15 @@ Simple CLI interface to run the program.
 
 """
 
-from kursywalut import version
-from kursywalut.handlers import MoneyPlHandler
+import logging
+
 import six
+
+from .. import version
+from ..handlers import MoneyPlHandler
+
+
+logger = logging.getLogger(__name__)
 
 
 class Config(object):
@@ -51,8 +57,11 @@ def get_moneypl():
         OrderedDict: Parsed data.
 
     """
+    print_unicode('Getting data from website.')
     mpl = MoneyPlHandler()
     data = mpl.get_moneypl()
+    print_unicode('data download time: {}'.format(mpl.download_time))
+    print_unicode('parse time: {}'.format(mpl.parse_time))
     return data
 
 
@@ -100,6 +109,5 @@ def run(*args):
     Config.opts = args
     display_header()
     data = get_moneypl()
-    # pprint(data)
     print_unicode('')
     pretty_print_data(data)
