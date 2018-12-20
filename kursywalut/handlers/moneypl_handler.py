@@ -5,6 +5,7 @@ Prepared requests are being passed to the get_webpage() method
 inherited from GenericHandler class. In the next receved response is passed
 over to the MoneyPlParser().parse() method. In the last step parsed data
 is returned by the get_moneypl() method.
+
 """
 
 from kursywalut.parsers.moneypl_parser import MoneyPlParser
@@ -13,7 +14,18 @@ from .generic_handler import GenericHandler
 
 
 class MoneyPlHandler(GenericHandler):
-    """MoneyPlHandler class."""
+    """MoneyPlHandler class.
+
+    Attributes:
+        site_mapping (dict): A dict containing website mapping.
+        page_list (list): A list of string containing responses from websites.
+        page (str): data retrieved from website.
+        url (str): URL to retrieve data from.
+
+        url_forex (str): URL for FOREX currency exchange.
+        url_nbp (str): URL for NBP currency exchange.
+
+    """
 
     def __init__(self):
         """Initialization method."""
@@ -30,6 +42,7 @@ class MoneyPlHandler(GenericHandler):
         """_get_forex method.
 
         Send request for FOREX data and add parsed data to the list.
+
         """
         self.url = self.url_forex
         self.get_webpage()
@@ -40,6 +53,7 @@ class MoneyPlHandler(GenericHandler):
         """_get_nbp method.
 
         Send request for NBP data and add parsed data to the list.
+
         """
         self.url = self.url_nbp
         self.get_webpage()
@@ -49,6 +63,10 @@ class MoneyPlHandler(GenericHandler):
         """get_moneypl method.
 
         Send requests for FOREX and NBP data and parse both responses.
+
+        Returns:
+            Parsed data as OrderedDict.
+
         """
         self.page_list = []
         self._get_forex()

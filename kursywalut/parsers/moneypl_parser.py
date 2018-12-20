@@ -7,6 +7,7 @@ self.site_mapping = {
     'FOREX': 'https://www.money.pl/pieniadze/forex/',
     'NBP': 'https://www.money.pl/pieniadze/nbp/srednie/',
 }
+
 """
 
 from collections import OrderedDict
@@ -16,10 +17,24 @@ import six
 
 
 class MoneyPlParser(object):
-    """MoneyPlParser class."""
+    """MoneyPlParser class.
+
+    Classs for parsing retried currency exchange data.
+
+    Attributes:
+        moneypl_handler (object): instance of MoneyPlHandler() class.
+        currency (OrderedDict): dictionary containing all currency
+            exchange data.
+
+    """
 
     def __init__(self, moneypl_handler, site_mapping):
-        """Initialization metod."""
+        """Initialization metod.
+
+        Args:
+            moneypl_handler (object): instance of MoneyPlHandler() class.
+            site_mapping (dict): A dict containing website mapping.
+        """
         self.moneypl_handler = moneypl_handler
         self.currency = OrderedDict()
         for key, value in site_mapping.items():
@@ -34,7 +49,12 @@ class MoneyPlParser(object):
             return self.moneypl_handler.page
 
     def parse(self):
-        """Parse xpath method."""
+        """Parse xpath method.
+
+        Returns:
+            Dictionary (OrderedDict) with currency exchange data.
+
+        """
         page_raw = self._get_text()
         if type(page_raw) == list:
             # FOREX
@@ -122,9 +142,13 @@ class MoneyPlParser(object):
         return self.currency
 
     def _to_unicode(self, value):
-        """Converts value to unicode.
+        """Convert value to unicode.
 
-        :param value: (str)
-        :return: (unicode)
+        Args:
+            value (str): Value to be converted to unicode.
+
+        Returns:
+            string (Python 3) or unicode (Python 2).
+
         """
         return six.text_type(value)

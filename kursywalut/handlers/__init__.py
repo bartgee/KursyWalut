@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
-"""
-Handlers Package.
-"""
+"""Handlers Package."""
+
 
 from .generic_handler import GenericHandler
 from .moneypl_handler import MoneyPlHandler

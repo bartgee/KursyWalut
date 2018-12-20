@@ -5,6 +5,7 @@ It consists of GenericHandler() class, which is ihnerited by MoneyPlHandler()
 class from kursywalut.handlers.moneypl_handler module. In the future, it could
 be used by another handlers used to request currency data from various
 websites.
+
 """
 
 import sys
@@ -14,7 +15,17 @@ import requests
 
 
 class GenericHandler(object):
-    """GenericHandler class."""
+    """GenericHandler class.
+
+    This is main handler class. All other handlers should inherit from it.
+
+    Attributes:
+        site_mapping (dict): A dict containing website mapping.
+        page_list (list): A list of string containing responses from websites.
+        page (str): data retrieved from website.
+        url (str): URL to retrieve data from.
+
+    """
 
     def __init__(self, url):
         """Initialization method."""
@@ -27,6 +38,7 @@ class GenericHandler(object):
         """get_webpage method.
 
         Send the request from self.site_mapping list.
+
         """
         for key, value in self.site_mapping.items():
             if value == self.url:
@@ -45,9 +57,13 @@ class GenericHandler(object):
             sys.exit(1)
 
     def _to_unicode(self, value):
-        """Converts value to unicode.
+        """Convert value to unicode.
 
-        :param value: (str)
-        :return: (unicode)
+        Args:
+            value (str): Value to be converted to unicode.
+
+        Returns:
+            string (Python 3) or unicode (Python 2).
+
         """
         return six.text_type(value)

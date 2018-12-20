@@ -2,6 +2,7 @@
 """Interface module.
 
 Simple CLI interface to run the program.
+
 """
 
 from kursywalut import version
@@ -10,22 +11,35 @@ import six
 
 
 class Config(object):
-    """Class for main program sys args."""
+    """Class for program configuration data.
+
+    Attributes:
+        opts: sys.args passed while running the program
+
+    """
 
     opts = None
 
 
 def _to_unicode(value):
-    """Converts value to unicode.
+    """Convert value to unicode.
 
-    :param value: (str)
-    :return: (unicode)
+    Args:
+        value (str): Value to be converted to unicode.
+
+    Returns:
+        string (Python 3) or unicode (Python 2).
+
     """
     return six.text_type(value)
 
 
 def print_unicode(str):
-    """Print unicode function."""
+    """Print unicode function.
+
+    Prints string (Python 3) or string converted to unicode (Python 2).
+
+    """
     out = (six.text_type(str))
     print(out)
 
@@ -33,9 +47,9 @@ def print_unicode(str):
 def get_moneypl():
     """Get money.pl currency data.
 
-    Returns string or unicode.
+    Returns:
+        OrderedDict: Parsed data.
 
-    :return: string or unicode
     """
     mpl = MoneyPlHandler()
     data = mpl.get_moneypl()
@@ -43,7 +57,12 @@ def get_moneypl():
 
 
 def pretty_print_data(data):
-    """Format received data."""
+    """Format received data.
+
+    Args:
+        data (ordereddict): OrderedDict to be printed.
+
+    """
     detail_str = ''
     for key, value in data.items():
         if key == 'FOREX':
