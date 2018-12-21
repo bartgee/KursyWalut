@@ -7,7 +7,7 @@ Kursy Walut
         :target: https://pypi.python.org/pypi/kursywalut
 
 .. image:: https://img.shields.io/travis/bartgee/kursywalut.svg
-        :target: https://travis-ci.org/bartgee/kursywalut
+        :target: https://travis-ci.org/bartgee/KursyWalut
 
 .. image:: https://readthedocs.org/projects/kursywalut/badge/?version=latest
         :target: https://kursywalut.readthedocs.io/en/latest/?badge=latest
