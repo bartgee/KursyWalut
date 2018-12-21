@@ -6,7 +6,7 @@ Kursy Walut
 .. image:: https://img.shields.io/pypi/v/kursywalut.svg
         :target: https://pypi.python.org/pypi/kursywalut
 
-.. image:: https://img.shields.io/travis/bartgee/kursywalut.svg
+.. image:: https://img.shields.io/travis/bartgee/KursyWalut.svg
         :target: https://travis-ci.org/bartgee/KursyWalut
 
 .. image:: https://readthedocs.org/projects/kursywalut/badge/?version=latest
