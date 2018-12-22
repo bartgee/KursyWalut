@@ -12,9 +12,6 @@ import logging
 
 import requests
 
-from ..funcs.string_operations import _to_unicode
-
-
 logger = logging.getLogger(__name__)
 
 
@@ -53,5 +50,6 @@ class GenericHandler(object):
             logger.debug('Done.')
             self.page = page.content
         except requests.exceptions.RequestException as error:
-            msg = _to_unicode('Błąd pobrania danych ze strony {}!'.format(self.url))
-            logger.error(msg + ': ' + str(error))
+            msg = ('Błąd pobrania danych ze strony {}: {}'.format(self.url, error))
+            logger.error(msg)
+            raise RuntimeError(msg)

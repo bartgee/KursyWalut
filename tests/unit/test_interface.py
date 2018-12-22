@@ -5,8 +5,6 @@
 import pytest
 import mock
 
-from requests.exceptions import RequestException
-
 from kursywalut.interface import interface
 
 DATA = {'FOREX': {'CHF': ['3,8007', '3,8107'],
@@ -23,10 +21,7 @@ DATA = {'FOREX': {'CHF': ['3,8007', '3,8107'],
 
 @pytest.fixture
 def response():
-    """Sample pytest fixture.
-
-    See more at: http://doc.pytest.org/en/latest/fixture.html
-    """
+    """Response pytest fixture."""
 
     interface.get_moneypl = mock.MagicMock(return_value=DATA)
 
@@ -34,6 +29,6 @@ def response():
 
 
 def test_response(response, expected=DATA):
-    """Sample pytest test function with the pytest fixture as an argument."""
+    """Test response."""
 
     assert response == expected

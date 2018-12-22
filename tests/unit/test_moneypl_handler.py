@@ -21,13 +21,12 @@ class TestMoneyPlHandler(object):
     MoneyPlHandler class tests.
     """
 
-    # @mock.patch('kursywalut.handlers.moneypl_handler.MoneyPlHandler')
+
     def test_get_moneypl(self, expected=DATA):
-        """Sample pytest test function with the pytest fixture as an argument."""
+        """Test get_money()."""
         with mock.patch(
             'kursywalut.handlers.moneypl_handler.MoneyPlHandler') as MockHandler:
             MockHandler.return_value.get_moneypl.return_value = DATA
-            # mock_MoneyPlHandler._get_forex = mock.ANY
             handler = MockHandler()
             request = handler.get_moneypl()
 
